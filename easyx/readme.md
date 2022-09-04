@@ -13,7 +13,7 @@
   - 创建: `initgraph()`
   - 删除: `closegraph()`
 - 为了避免窗口一闪而过，用 `getchar()` 阻塞   
-- 绘制圆形
+- [绘制圆形](#绘制圆形)
 - 物理坐标
   - 原点在左上角
   - 位置不可以改变
@@ -21,8 +21,64 @@
   - 逻辑坐标默认原点在左上角
   - 原点位置可以改变，用 `setorigin(int x, int y);`
   - 翻转逻辑坐标轴的方向：`setaspectratio(float xasp, float yasp);`
+- [绘制点](#绘制点)
+- [绘制线](#绘制线)
+- [绘制矩形](#绘制矩形)
+- [绘制椭圆](#绘制椭圆)
+- [绘制圆角矩形](#绘制圆角矩形)
+- [绘制扇形](#绘制扇形)
+- [绘制圆弧](#绘制圆弧)
   
 
 #### 绘制圆形
 
-- `circle()`
+- `void circle0(int x, int y, int radius);`
+
+#### 绘制点
+
+- `putpixel(int x, int y, COLORREF color);`
+  - 点占一个像素
+  - 第三个参数是颜色，可以用符号常量
+    - BLACK
+    - BLUE
+    - GREEN
+    - CYAN: 青
+    - RED
+    - MAGENTA: 紫
+    - BROWN
+    - YELLOW
+    - WHITE
+
+##### 随机绘制很多点
+
+- 用到 `rand()` 函数
+  - 该函数返回的是部位负数的随机值
+  - 得到取值范围在 [-400, 400]
+    - `rand() % (800 + 1) - 400;`
+  - 得到取值范围在 [-300, 300]
+    - `rand() % (600 + 1) - 300;`
+  
+#### 绘制线
+
+函数原型: `void line(int x1, int y1, int x2, int y2);`
+
+#### 绘制矩形
+函数原型: `void rectangle(int left, int top, int right, int bottom);`
+
+#### 绘制椭圆
+函数原型: `void ellipse(int left, int top, int right, int bottom);`
+  - left: 椭圆外切矩形的左上角 x 坐标
+  - top: 椭圆外切矩形的左上角 y 坐标
+  - right: 椭圆外切矩形的右下角 x 坐标
+  - bottom: 椭圆外切矩形的右下角 y 坐标
+  
+#### 绘制圆角矩形
+函数原型: `void reoundrect(int left, int top, int right, int bottom, int ellipsewidth, int elllipseheight);`
+
+#### 绘制扇形
+
+函数原型: `void pie(int left, int top, int right, int bottom, double stangle, double endangle);`
+
+#### 绘制圆弧
+
+函数原型: `void pie(int left, int top, int right, int bottom, double stangle, double endangle)`
