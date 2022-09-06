@@ -15,6 +15,9 @@ void drawMultiCircle();
 void drawTriangle();
 void drawTriangle2();
 void drawFiveSide(); // 绘制正五边形
+void drawLines();
+void drawSun();
+void resetBg();
 
 int main()
 {
@@ -26,6 +29,8 @@ int main()
     // 翻转逻辑坐标 y轴，使其向上
     setaspectratio(1, -1);
 
+    resetBg();
+
     // 画圆
     // drawCircle();
         
@@ -35,6 +40,10 @@ int main()
     drawTriangle2();
 
     drawFiveSide();
+
+    drawLines();
+
+    drawSun();
 
     getchar();
 
@@ -100,5 +109,65 @@ void drawFiveSide() {
     }
 
     polygon(points, side);
+}
+
+/*
+* 绘制多重类型的线段
+*/
+void drawLines() {
+
+    // 描边样式
+    setlinestyle(PS_SOLID, 4); // 实线
+    line(-300, 200, 300, 200);
+
+    setlinestyle(PS_DASH, 4); // 虚线
+    line(-300, 150, 300, 150);
+
+    setlinestyle(PS_DOT, 4); // 点线
+    line(-300, 100, 300, 100);
+
+    setlinestyle(PS_DASHDOT, 4); // 
+    line(-300, 50, 300, 50);
+
+    setlinestyle(PS_DASHDOTDOT, 4); // 
+    line(-300, 0, 300, 0);
+
+    setlinestyle(PS_NULL, 4); // 不可见
+    line(-300, -50, 300, -50);
+
+    // 端点样式
+    setlinestyle(PS_ENDCAP_ROUND, 16);
+    line(-300, -100, 300, -100);
+
+    setlinestyle(PS_ENDCAP_SQUARE, 16);
+    line(-300, -150, 300, -150);
+
+    setlinestyle(PS_ENDCAP_FLAT, 16);
+    line(-300, -200, 300, -200);
+
+    // 连接样式
+    setlinestyle(PS_JOIN_BEVEL, 64);
+    POINT points1[3] = { {-150, 100}, {0, 200}, {150, 100}};
+    polyline(points1, 3);
+
+    setlinestyle(PS_JOIN_MITER, 64);
+    POINT points2[3] = { {-150, 0}, {0, 100}, {150, 0} };
+    polyline(points2, 3);
+
+    setlinestyle(PS_JOIN_ROUND, 64);
+    POINT points3[3] = { {-150, -100}, {0, 0}, {150, -100} };
+    polyline(points3, 3);
+
+}
+
+void drawSun() {
+    setfillcolor(RED);
+    solidcircle(200, 200, 80);
+}
+
+void resetBg() {
+
+    setbkcolor(YELLOW);
+    cleardevice();
 }
 
