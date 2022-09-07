@@ -112,3 +112,31 @@
 - 绘制正五边形
   - 求顶点坐标，需要用到三角函数，引入头文件: `math.h`
   - C 语言的三角函数用的是弧度制
+
+### 形状的样式
+
+- 设置描边颜色: `void setlinecolor(COLORREF color);`
+- 设置描边样式: `void setlinestyle(int style, int thickness = 1, const DWORD *puserstyle = NULL, DWORD userstylecount = 0);`
+  - style: 画线样式
+    - 线性样式
+    - 端点样式
+    - 连接样式
+- 填充绘制图形
+  - `solidcircle();`    
+  - `solid`
+  - 设置填充颜色: `void setfillcolor(COLORREF color);`  
+- 描边加填充图形样式   
+  - `void fillcircle();`
+- 设置背景色  
+  - 默认背景色为黑色
+  - `void setbkcolor(COLORREF color);`
+    - 要配合调用函数: `cleardevice();`
+
+#### 画线样式     
+![](./imgs/img-1.png)
+
+#### 画线样式     
+![](./imgs/img-2.png)
+
+#### 连接样式     
+![](./imgs/img-3.png)
