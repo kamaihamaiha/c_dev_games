@@ -1,4 +1,4 @@
-﻿#include <easyx.h>
+#include <easyx.h>
 #include <stdio.h>
 #include <math.h>
 
@@ -19,17 +19,23 @@ void drawLines();
 void drawSun();
 void resetBg();
 
+void drawBg();
+
+void drawRainBow();
+void drawSky();
+void drawRainBowCircle();
+
 int main()
 {
-    initgraph(800, 600);
+    //initgraph(800, 600);
 
     // 移动逻辑坐标原点到窗口中心
-    setorigin(400, 300);
+    //setorigin(400, 300);
 
     // 翻转逻辑坐标 y轴，使其向上
-    setaspectratio(1, -1);
+    //setaspectratio(1, -1);
 
-    resetBg();
+    //resetBg();
 
     // 画圆
     // drawCircle();
@@ -37,18 +43,22 @@ int main()
 
    // drawMultiCircle();
 
-    drawTriangle2();
+    // drawTriangle2();
 
-    drawFiveSide();
+    //drawFiveSide();
 
-    drawLines();
+    //drawLines();
 
-    drawSun();
+    //drawSun();
 
-    getchar();
+    //getchar();
 
 
-    closegraph();
+    //closegraph();
+
+    //drawRainBow();
+
+    drawSky();
 
     return 0;
 }
@@ -158,6 +168,7 @@ void drawLines() {
     POINT points3[3] = { {-150, -100}, {0, 0}, {150, -100} };
     polyline(points3, 3);
 
+    drawBg();
 }
 
 void drawSun() {
@@ -169,5 +180,62 @@ void resetBg() {
 
     setbkcolor(YELLOW);
     cleardevice();
+}
+
+void drawBg() {
+    // 把背景色设置为天蓝色
+    setbkcolor(RGB(134, 172, 242));
+    cleardevice();
+}
+
+// 使用了 hsv 颜色
+void drawRainBow() {
+
+    initgraph(800, 600);
+    float diffH = 360.0 / 600;
+    float h = 0;
+    for (size_t y = 0; y < 600; y++)
+    {
+        setlinecolor(HSVtoRGB(h, 1, 1));
+        line(0, y, 800, y);
+        h += diffH;
+    }
+
+    getchar();
+    closegraph();
+}
+
+void drawSky() {
+    initgraph(800, 600);
+    float s = 0.76; // 最大饱和度
+    float diffS = s / 600;
+
+    for (size_t y = 0; y < 600; y++)
+    {
+        setlinecolor(HSVtoRGB(216, s, 0.95));
+        line(0, y, 800, y);
+        s -= diffS;
+    }
+
+    drawRainBowCircle();
+
+    getchar();
+    closegraph();
+}
+
+void drawRainBowCircle(){
+
+    float max_radius = 200;
+    float min_radius = 140;
+    float h = 0;
+    float diffH = 360.0 / (max_radius - min_radius);
+
+    for (size_t y = min_radius; y < max_radius; y++)
+    {
+        setlinecolor(HSVtoRGB(h, 1, 1));
+        circle(400, 600, y);
+        h += diffH;
+    }
+   
 }
 
